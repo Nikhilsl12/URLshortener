@@ -25,9 +25,9 @@ public class UrlController {
         if (originalUrl == null || originalUrl.isBlank()) {
             return ResponseEntity.badRequest().body(Map.of("error", "URL is required"));
         }
-    // If the http not given then it automatically adds it.
+    // If http:// or https:// is not provided, automatically add http://
         if (!originalUrl.startsWith("http://") && !originalUrl.startsWith("https://")) {
-            originalUrl = "http://" + originalUrl;
+            originalUrl = "https://" + originalUrl;
         }
 
         String shortCode = urlService.shortenUrl(originalUrl);
